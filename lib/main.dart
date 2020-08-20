@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_watch/providers/categories.dart';
+import 'package:shop_watch/screens/detail_product_screen.dart';
 import 'package:shop_watch/screens/home_screen.dart';
 import 'package:shop_watch/screens/tabs_screen.dart';
 import 'package:shop_watch/theme.dart';
@@ -18,6 +19,15 @@ class MyApp extends StatelessWidget {
         title: 'ShopWatch',
         theme: buildThemeData(context),
         home: TabsScreen(),
+        routes: {
+          DetailProductScreen.routeName: (ctx) => DetailProductScreen(
+              /*
+                brand: 'null',
+                description: 'null',
+                name: 'null',
+                price: 33.3,*/
+              )
+        },
       ),
     );
   }

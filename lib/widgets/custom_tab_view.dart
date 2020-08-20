@@ -100,15 +100,18 @@ class _CustomTabsState extends State<CustomTabView>
       children: <Widget>[
         Container(
           alignment: Alignment.center,
-          child: TabBar(
-            isScrollable: true,
-            controller: controller,
-            labelColor: Theme.of(context).primaryColor,
-            unselectedLabelColor: Colors.grey[400],
-            indicatorPadding: EdgeInsets.all(10),
-            tabs: List.generate(
-              widget.itemCount,
-              (index) => widget.tabBuilder(context, index),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10.0),
+            child: TabBar(
+              isScrollable: true,
+              controller: controller,
+              labelColor: Theme.of(context).primaryColor,
+              unselectedLabelColor: Colors.grey[400],
+              indicatorPadding: EdgeInsets.all(10),
+              tabs: List.generate(
+                widget.itemCount,
+                (index) => widget.tabBuilder(context, index),
+              ),
             ),
           ),
         ),

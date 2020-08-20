@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 class Categories with ChangeNotifier {
   List<String> _categories = [
-    'Rolex',
-    'Hublot',
-    'Audermars Piguet',
-    'Bretling',
-    'Jacob&Co',
-    'Claude Bernard'
+    'ALL',
+    'ROLEX',
+    'HUBLOT',
+    'OMEGA',
+    'AUDERMARS PIGUET',
+    'BRETLING',
+    'JACOB&CO',
+    'CLAUDE BERNARD'
   ];
 
   List<String> get categories {
