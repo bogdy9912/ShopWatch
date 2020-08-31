@@ -6,7 +6,7 @@ enum Bracelet {
   steel,
 }
 enum WatchType { mechanical, automatic }
-enum WatchGender { man, women }
+enum WatchGender { man, women, universal }
 
 class Product {
   final String id;
@@ -21,7 +21,7 @@ class Product {
   WatchGender gender;
   WatchType type;
   File image;
-  bool isFavorite;
+  bool isFavorite = false;
 
   Product({
     this.id,

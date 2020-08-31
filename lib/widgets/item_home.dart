@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -17,20 +18,39 @@ class ItemHome extends StatelessWidget {
     @required this.price,
     @required this.description,
   });
-
+  bool favStatus;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).pushNamed(
-        DetailProductScreen.routeName,
-        arguments: {
-          'id': id,
-          'name': name,
-          'price': price,
-          'description': description,
-          'brand': brand
-        },
-      ),
+      onTap: () async {
+        var currUser = FirebaseAuth.instance.currentUser;
+        try {
+          var currUserFav = await FirebaseFirestore.instance
+              .collection('usersData/${currUser.uid}/fav')
+              .doc(id)
+              .get();
+          if (currUserFav == null)
+            favStatus = false;
+          else if (currUserFav.get('value') == false)
+            favStatus = false;
+          else
+            favStatus = true;
+        } catch (err) {
+          print('e in item');
+          favStatus = false;
+        }
+        Navigator.of(context).pushNamed(
+          DetailProductScreen.routeName,
+          arguments: {
+            'id': id,
+            'name': name,
+            'price': price,
+            'description': description,
+            'brand': brand,
+            'favStatus': favStatus,
+          },
+        );
+      },
       child: Stack(
         overflow: Overflow.visible,
         children: [
@@ -94,19 +114,9 @@ class ItemHome extends StatelessWidget {
           Positioned(
             bottom: 10.0,
             right: 10.0,
-            child: IconButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(
-                  DetailProductScreen.routeName,
-                  arguments: {
-                    'id': id,
-                  },
-                );
-              },
-              icon: Icon(
-                Icons.arrow_forward,
-                color: Colors.white,
-              ),
+            child: Icon(
+              Icons.arrow_forward,
+              color: Colors.white,
             ),
           ),
         ],

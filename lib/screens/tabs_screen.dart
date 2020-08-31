@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_watch/providers/categories.dart';
+import 'package:shop_watch/screens/add_product_screen.dart';
 import 'package:shop_watch/screens/home_screen.dart';
 import 'package:shop_watch/size_config.dart';
+import 'package:shop_watch/forms/add_product_form.dart';
+import 'package:shop_watch/widgets/app_drawer.dart';
 import 'package:shop_watch/widgets/badge.dart';
 import 'package:shop_watch/widgets/custom_tab_view.dart';
 
@@ -38,7 +41,7 @@ class _TabsScreenState extends State<TabsScreen> {
           ),
         ],
       ),
-      drawer: Drawer(),
+      drawer: AppDrawer(),
       body: CustomTabView(
         initPosition: _selectedPageIndex,
         itemCount: categories.categoriesCount,

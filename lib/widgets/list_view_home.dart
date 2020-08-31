@@ -20,13 +20,13 @@ class ListViewHome extends StatelessWidget {
     return SizedBox(
       width: width,
       height: height,
-      child: FutureBuilder(
-          future: selectedBrand == 'ALL'
-              ? Firestore.instance.collection('watches').getDocuments()
-              : Firestore.instance
+      child: StreamBuilder(
+          stream: selectedBrand == 'ALL'
+              ? FirebaseFirestore.instance.collection('watches').snapshots()
+              : FirebaseFirestore.instance
                   .collection('watches')
                   .where('brand', isEqualTo: selectedBrand)
-                  .getDocuments(),
+                  .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Row(
@@ -36,6 +36,7 @@ class ListViewHome extends StatelessWidget {
               );
             }
             final doc = snapshot.data.documents;
+            print(doc);
             return ListView.builder(
               itemCount: doc.length,
               scrollDirection: Axis.horizontal,
@@ -43,11 +44,11 @@ class ListViewHome extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(right: 40.0),
                   child: ItemHome(
-                    id: doc[index]['id'],
-                    brand: doc[index]['brand'],
-                    name: doc[index]['name'],
-                    price: doc[index]['price'],
-                    description: doc[index]['description'],
+                    id: doc[index].get('id'),
+                    brand: doc[index].get('brand'),
+                    name: doc[index].get('name'),
+                    price: doc[index].get('price'),
+                    description: doc[index].get('description'),
                   ),
                 ),
               ),

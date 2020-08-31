@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shop_watch/size_config.dart';
 import 'package:shop_watch/widgets/favorite_icon.dart';
 
@@ -22,10 +25,42 @@ class DetailProductScreen extends StatefulWidget {
 }
 
 class _DetailProductScreenState extends State<DetailProductScreen> {
+  /*
+    Future<bool> fetchFavoriteStatus() async {
+      var currUser = await FirebaseAuth.instance.currentUser;
+      var currUserFav = await FirebaseFirestore.instance
+          .collection('usersData')
+          .doc('${currUser.uid}/favorites')
+          .get();
+      if (currUserFav == null)
+        return false;
+      else if (currUserFav.get('${arg['id']}') == null)
+        return false;
+      else
+        return true;
+    }
+*/
+  var arg;
+  bool isa = false;
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    print(isa);
+    if (isa == false) {
+      print('La multi ani');
+      arg = ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+      setState(() {
+        isa = true;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final arg =
-        ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
+    print(arg);
+    //   arg = ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
     SizeConfig().init(context);
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -81,8 +116,34 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
           Positioned(
             top: SizeConfig.screenHeight * 0.42,
             right: SizeConfig.screenWidth * 0.1,
-            child: FavoriteIcon(
-              favorite: true,
+            child: GestureDetector(
+              child: FavoriteIcon(
+                id: arg['id'],
+                favorite: arg['favStatus'],
+              ),
+              onTap: () async {
+                var currUser = FirebaseAuth.instance.currentUser;
+
+                setState(() {
+                  arg['favStatus'] = !arg['favStatus'];
+                });
+
+                print(arg);
+                try {
+                  await FirebaseFirestore.instance
+                      .collection('usersData/${currUser.uid}/fav')
+                      .doc('${arg['id']}')
+                      .set(
+                    {
+                      'value': arg['favStatus'],
+                    },
+                  );
+                } on PlatformException catch (err) {
+                  print(err.message);
+                } catch (error) {
+                  print('err');
+                }
+              },
             ),
           ),
           Positioned(
