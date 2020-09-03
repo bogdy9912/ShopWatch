@@ -7,6 +7,7 @@ import 'package:shop_watch/screens/add_product_screen.dart';
 import 'package:shop_watch/screens/auth_screen.dart';
 import 'package:shop_watch/screens/detail_product_screen.dart';
 import 'package:shop_watch/screens/tabs_screen.dart';
+import 'package:shop_watch/screens/user_products_screen.dart';
 import 'package:shop_watch/theme.dart';
 
 void main() async {
@@ -38,6 +39,8 @@ class MyApp extends StatelessWidget {
         routes: {
           DetailProductScreen.routeName: (ctx) => DetailProductScreen(),
           AddProductScreen.routeName: (ctx) => AddProductScreen(),
+          UserProducts.routeName: (ctx) => UserProducts(),
+          TabsScreen.routeName: (ctx) => TabsScreen()
         },
       ),
     );

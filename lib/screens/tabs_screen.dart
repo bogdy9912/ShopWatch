@@ -10,6 +10,7 @@ import 'package:shop_watch/widgets/badge.dart';
 import 'package:shop_watch/widgets/custom_tab_view.dart';
 
 class TabsScreen extends StatefulWidget {
+  static const routeName = '/tabs-screen';
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }

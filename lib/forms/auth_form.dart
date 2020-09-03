@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_watch/screens/user_products_screen.dart';
 import 'package:shop_watch/size_config.dart';
 
 class AuthForm extends StatefulWidget {
@@ -118,10 +119,6 @@ class _AuthFormState extends State<AuthForm> {
                         onChanged: (value) {
                           _userPassword = value;
                         },
-                        /*
-                        onFieldSubmitted: (value) {
-                          _userPassword = value;
-                        },*/
                         onSaved: (newValue) {
                           _userPassword = newValue;
                         },

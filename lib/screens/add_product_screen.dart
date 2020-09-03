@@ -9,6 +9,7 @@ class AddProductScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Add product'),
+        elevation: 1,
       ),
       drawer: AppDrawer(),
       body: AddProductForm(),

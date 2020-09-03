@@ -38,12 +38,6 @@ class _AuthScreenState extends State<AuthScreen> {
             'email': email,
           },
         );
-/*
-        final ref = FirebaseStorage.instance
-            .ref()
-            .child('user_image')
-            .child('${userCredential.user.uid}')
-            .child('${DateTime.now()}' + '.jpeg');*/
       }
     } on PlatformException catch (error) {
       var message = 'An error occured, please check your credentials!';

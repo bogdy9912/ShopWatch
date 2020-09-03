@@ -48,9 +48,13 @@ class _FavoriteIconState extends State<FavoriteIcon> {
             borderRadius: BorderRadius.circular(15),
           ),
         ),
-        Icon(
-          widget.favorite ? Icons.favorite : Icons.favorite_border,
-          color: Colors.white,
+        Positioned(
+          top: SizeConfig.screenWidth * 0.135 / 4,
+          left: SizeConfig.screenWidth * 0.135 / 4,
+          child: Icon(
+            widget.favorite ? Icons.favorite : Icons.favorite_border,
+            color: Colors.white,
+          ),
         ),
       ],
     );

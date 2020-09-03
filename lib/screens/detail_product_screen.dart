@@ -47,9 +47,7 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-    print(isa);
     if (isa == false) {
-      print('La multi ani');
       arg = ModalRoute.of(context).settings.arguments as Map<String, dynamic>;
       setState(() {
         isa = true;

@@ -7,7 +7,7 @@ import 'package:shop_watch/screens/detail_product_screen.dart';
 class ItemHome extends StatelessWidget {
   final String brand;
   final String name;
-  final double price;
+  final String price;
   final String id;
   final String description;
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_watch/screens/add_product_screen.dart';
+import 'package:shop_watch/screens/tabs_screen.dart';
+import 'package:shop_watch/screens/user_products_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -17,12 +19,22 @@ class AppDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.shopping_basket),
             title: Text('Shop'),
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed(TabsScreen.routeName);
+            },
           ),
           ListTile(
             leading: Icon(Icons.person),
             title: Text('My profile'),
             onTap: () {},
+          ),
+          ListTile(
+            leading: Icon(Icons.storage),
+            title: Text('My products'),
+            onTap: () {
+              Navigator.of(context)
+                  .pushReplacementNamed(UserProducts.routeName);
+            },
           ),
           ListTile(
             leading: Icon(Icons.add_box),
