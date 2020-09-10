@@ -3,7 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shop_watch/size_config.dart';
+import 'package:shop_watch/widgets/buy_button_widget.dart';
 import 'package:shop_watch/widgets/favorite_icon.dart';
+import 'package:slider_button/slider_button.dart';
 
 class DetailProductScreen extends StatefulWidget {
   static const routeName = '/detail-product-screen';
@@ -199,9 +201,11 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
           ),
           Positioned(
             bottom: 0,
-            child: Switch(
-              value: true,
-              onChanged: (_) {},
+            child: BuyButtonWidget(
+              arg['id'],
+              arg['brand'],
+              arg['name'],
+              arg['price'],
             ),
           ),
         ],

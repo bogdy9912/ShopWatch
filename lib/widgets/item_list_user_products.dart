@@ -42,7 +42,12 @@ class ItemListUserProducts extends StatelessWidget {
                 Icons.delete_outline,
                 color: Colors.red,
               ),
-              onPressed: () {},
+              onPressed: () async {
+                await FirebaseFirestore.instance
+                    .collection('watches')
+                    .doc(productId)
+                    .delete();
+              },
             ),
           ],
         ),

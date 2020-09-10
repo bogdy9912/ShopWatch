@@ -4,8 +4,9 @@ import 'package:shop_watch/size_config.dart';
 
 class QuantityWidgetForm extends StatefulWidget {
   final Function setQuantity;
+  final String initValue;
 
-  QuantityWidgetForm(this.setQuantity);
+  QuantityWidgetForm(this.setQuantity, [this.initValue = '1']);
   @override
   _QuantityWidgetFormState createState() => _QuantityWidgetFormState();
 }
@@ -16,7 +17,7 @@ class _QuantityWidgetFormState extends State<QuantityWidgetForm> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _controller.text = '1';
+    _controller.text = widget.initValue;
   }
 
   @override
@@ -30,8 +31,8 @@ class _QuantityWidgetFormState extends State<QuantityWidgetForm> {
                 width: 24,
                 height: 24,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Colors.grey[300]),
+                    borderRadius: BorderRadius.circular(6),
+                    color: Colors.grey[200]),
               ),
               IconButton(
                 iconSize: 20,
@@ -77,8 +78,8 @@ class _QuantityWidgetFormState extends State<QuantityWidgetForm> {
                 width: 24,
                 height: 24,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Colors.grey[300]),
+                    borderRadius: BorderRadius.circular(6),
+                    color: Colors.grey[200]),
               ),
               IconButton(
                   iconSize: 20,

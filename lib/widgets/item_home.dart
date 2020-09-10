@@ -58,7 +58,7 @@ class ItemHome extends StatelessWidget {
             width: 190,
             height: 250,
             decoration: BoxDecoration(
-              color: Colors.deepOrange[200],
+              color: Colors.teal[200],
               borderRadius: BorderRadius.circular(20),
             ),
           ),
@@ -66,10 +66,14 @@ class ItemHome extends StatelessWidget {
             top: 10.0,
             left: 20.0,
             child: SizedBox(
-              width: 70,
-              child: Text(
-                brand,
-                style: TextStyle(color: Colors.white),
+              width: 170,
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: Alignment.topLeft,
+                child: Text(
+                  brand,
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ),
           ),

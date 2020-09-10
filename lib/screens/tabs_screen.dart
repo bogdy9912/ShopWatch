@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop_watch/providers/cart.dart';
 import 'package:shop_watch/providers/categories.dart';
 import 'package:shop_watch/screens/add_product_screen.dart';
+import 'package:shop_watch/screens/cart_screen.dart';
 import 'package:shop_watch/screens/home_screen.dart';
 import 'package:shop_watch/size_config.dart';
 import 'package:shop_watch/forms/add_product_form.dart';
@@ -33,12 +35,16 @@ class _TabsScreenState extends State<TabsScreen> {
             icon: Icon(Icons.search),
             onPressed: () {},
           ),
-          Badge(
-            child: IconButton(
-              icon: Icon(Icons.shopping_cart),
-              onPressed: () {},
+          Consumer<Cart>(
+            builder: (context, value, child) => Badge(
+              child: IconButton(
+                icon: Icon(Icons.shopping_cart),
+                onPressed: () {
+                  Navigator.of(context).pushNamed(CartScreen.routeName);
+                },
+              ),
+              value: value.itemCount.toString(),
             ),
-            value: '0',
           ),
         ],
       ),

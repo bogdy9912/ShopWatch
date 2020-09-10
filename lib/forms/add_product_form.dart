@@ -277,7 +277,7 @@ class _AddProductFormState extends State<AddProductForm> {
               SizedBox(
                 height: 10,
               ),
-              ImageHolder(_pickedImageFn),
+              ImageHolder(isEdit, _pickedImageFn),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

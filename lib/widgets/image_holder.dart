@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImageHolder extends StatefulWidget {
+  final _isEdit;
   final Function(File pickedImage) _imagePickFn;
 
-  ImageHolder(this._imagePickFn);
+  ImageHolder(this._isEdit, this._imagePickFn);
   @override
   _ImageHolderState createState() => _ImageHolderState();
 }
@@ -51,23 +52,37 @@ class _ImageHolderState extends State<ImageHolder> {
             width: 10,
           ),
           Text(
-            _pickedImage == null ? 'Upload image' : 'Image uploaded',
+            widget._isEdit
+                ? 'Image uploaded'
+                : _pickedImage == null ? 'Upload image' : 'Image uploaded',
             style: TextStyle(
-              color: _pickedImage == null ? Colors.black : Colors.teal,
-              fontWeight:
-                  _pickedImage == null ? FontWeight.normal : FontWeight.bold,
+              color: widget._isEdit
+                  ? Colors.teal
+                  : _pickedImage == null ? Colors.black : Colors.teal,
+              fontWeight: widget._isEdit
+                  ? FontWeight.bold
+                  : _pickedImage == null ? FontWeight.normal : FontWeight.bold,
             ),
           ),
           Spacer(),
-          _pickedImage == null
-              ? SizedBox()
-              : IconButton(
+          widget._isEdit
+              ? IconButton(
                   icon: Icon(Icons.refresh),
                   onPressed: _pickImage,
-                ),
+                )
+              : _pickedImage == null
+                  ? SizedBox()
+                  : IconButton(
+                      icon: Icon(Icons.refresh),
+                      onPressed: _pickImage,
+                    ),
           IconButton(
-            icon: Icon(_pickedImage == null ? Icons.file_upload : Icons.check),
-            color: _pickedImage == null ? Colors.black : Colors.teal,
+            icon: Icon(widget._isEdit
+                ? Icons.check
+                : _pickedImage == null ? Icons.file_upload : Icons.check),
+            color: widget._isEdit
+                ? Colors.teal
+                : _pickedImage == null ? Colors.black : Colors.teal,
             onPressed: _pickedImage == null ? _pickImage : () {},
           ),
           SizedBox(

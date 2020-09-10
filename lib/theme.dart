@@ -25,6 +25,17 @@ ThemeData buildThemeData(BuildContext context) {
             fontSize: 24, color: bogPrimaryColor, fontWeight: FontWeight.bold),
       ),
     ),
+
+/*
+    appBarTheme: AppBarTheme.of(context).copyWith(
+      color: bogPrimaryColor,
+      actionsIconTheme: IconTheme.of(context).copyWith(color: Colors.white),
+      iconTheme: IconTheme.of(context).copyWith(color: Colors.white),
+      textTheme: TextTheme(
+        headline6: TextStyle(
+            fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold),
+      ),
+    ),*/
     scaffoldBackgroundColor: Colors.white,
     accentColor: bogSecondaryColor,
   );
