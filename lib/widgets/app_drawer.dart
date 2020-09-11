@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_watch/screens/add_product_screen.dart';
 import 'package:shop_watch/screens/orders_screen.dart';
@@ -70,7 +72,9 @@ class AppDrawer extends StatelessWidget {
                 color: Colors.grey[400],
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              FirebaseAuth.instance.signOut();
+            },
           ),
         ],
       ),

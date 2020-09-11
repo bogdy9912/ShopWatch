@@ -10,6 +10,7 @@ class ItemHome extends StatelessWidget {
   final String price;
   final String id;
   final String description;
+  final String imageURL;
 
   ItemHome({
     @required this.id,
@@ -17,6 +18,7 @@ class ItemHome extends StatelessWidget {
     @required this.name,
     @required this.price,
     @required this.description,
+    @required this.imageURL,
   });
   bool favStatus;
   @override
@@ -110,8 +112,10 @@ class ItemHome extends StatelessWidget {
               height: 210,
               child: Transform.rotate(
                 angle: pi / 5,
-                child: Image.asset(
-                    'assets/images/Omega-De-Ville-Tourbillon-RMV.png'),
+                child: Image.network(
+                    imageURL) /*Image.asset(
+                    'assets/images/Omega-De-Ville-Tourbillon-RMV.png')*/
+                ,
               ),
             ),
           ),

@@ -13,6 +13,13 @@ class OrdersScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Your Orders'),
+        backgroundColor: Theme.of(context).primaryColor,
+        textTheme: TextTheme(
+          headline6: TextStyle(
+              fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        actionsIconTheme: IconTheme.of(context).copyWith(color: Colors.white),
+        iconTheme: IconTheme.of(context).copyWith(color: Colors.white),
       ),
       drawer: AppDrawer(),
       body: FutureBuilder(
@@ -27,28 +34,28 @@ class OrdersScreen extends StatelessWidget {
               child: Text('err'),
             );
           } else
-            //print(snapshot.data.documents.length);
             return ListView.builder(
               itemCount: snapshot.data.documents.length,
               itemBuilder: (context, index) {
-                print(snapshot.data.documents[index].data()['amount']);
-                return OrderItem(Order(
-                  id: snapshot.data.documents[index].id,
-                  amount: snapshot.data.documents[index].data()['total'],
-                  dateTime: snapshot.data.documents[index].data()['dateTime'],
-                  products: (snapshot.data.documents[index].data()['items']
-                          as List<dynamic>)
-                      .map(
-                        (e) => CartItem(
-                          id: e['id'],
-                          brand: e['brand'],
-                          name: e['name'],
-                          price: e['price'],
-                          quantity: e['quantity'],
-                        ),
-                      )
-                      .toList(),
-                ));
+                return OrderItem(
+                  Order(
+                    id: snapshot.data.documents[index].id,
+                    amount: snapshot.data.documents[index].data()['total'],
+                    dateTime: snapshot.data.documents[index].data()['dateTime'],
+                    products: (snapshot.data.documents[index].data()['items']
+                            as List<dynamic>)
+                        .map(
+                          (e) => CartItem(
+                            id: e['id'],
+                            brand: e['brand'],
+                            name: e['name'],
+                            price: e['price'],
+                            quantity: e['quantity'],
+                          ),
+                        )
+                        .toList(),
+                  ),
+                );
               },
             );
         },

@@ -49,6 +49,7 @@ class ListViewHome extends StatelessWidget {
                     name: doc[index].get('name'),
                     price: doc[index].get('price'),
                     description: doc[index].get('description'),
+                    imageURL: doc[index].get('image'),
                     // color: doc[index].get('color'),
                   ),
                 ),

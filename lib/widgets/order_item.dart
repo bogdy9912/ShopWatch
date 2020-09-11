@@ -15,13 +15,23 @@ class _OrderItemState extends State<OrderItem> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Theme.of(context).primaryColor,
       child: Column(
         children: [
           ListTile(
-            title: Text(widget.order.amount),
-            subtitle: Text(widget.order.dateTime),
+            title: Text(
+              widget.order.amount,
+              style: TextStyle(color: Colors.white),
+            ),
+            subtitle: Text(
+              widget.order.dateTime,
+              style: TextStyle(color: Colors.white),
+            ),
             trailing: IconButton(
-              icon: Icon(Icons.arrow_drop_down),
+              icon: Icon(
+                Icons.arrow_drop_down,
+                color: Colors.white,
+              ),
               onPressed: () {
                 setState(() {
                   _expanded = !_expanded;
@@ -46,7 +56,7 @@ class _OrderItemState extends State<OrderItem> {
                     .map((e) => ListTile(
                           title: Text(e.name),
                           subtitle: Text(e.brand),
-                          trailing: Text(e.quantity),
+                          trailing: Text('X' + e.quantity),
                         ))
                     .toList(),
               ),
